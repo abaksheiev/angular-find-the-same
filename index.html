@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the same</title>
+    <link rel="stylesheet" href="app/styles/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+
+    <script src="bower_components/angular/angular.min.js" language="JavaScript"></script>
+</head>
+
+<body ng-app="findTheSameApp">
+
+<div id="container" ng-controller="gameController">
+    <div class="form-inline">
+        <div class="form-group">
+            <input ng-model="columns" class="form-control"  placeholder="columns">
+            <label>*</label>
+            <input ng-model="rows" class="form-control" id="exampleInputName2" placeholder="rows">
+        </div>
+         <button ng-click="newGame()" class="btn btn-default">start game</button>
+    </div>
+
+    <div class="play-desk">
+
+            <div card item="c" ng-repeat="c in cards | filter: notDeleted"></div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="app/app.js"></script>
+<!-- Services -->
+<script src="app/Services.GameManagerService.js" language="JavaScript"></script>
+
+<!-- Controllers -->
+<script src="app/Controllers.GameController.js" language="JavaScript"></script>
+
+<!-- Directive -->
+<script src="app/Directives.CardDirective.js" language="JavaScript"></script>
+
+
+</body>
+</html>
