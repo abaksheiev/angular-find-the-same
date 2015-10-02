@@ -1,17 +1,31 @@
+/*********************************************************************
+ * Created by Anton Baksheiev on 01.10.2015.                         *
+ * linkedin: https://www.linkedin.com/pub/baksheiev-anton/20/a56/b53 *
+ *********************************************************************/
+
+// Init all modules
+angular.module('findTheSameApp.controllers', [])
+angular.module('findTheSameApp.directives', [])
+angular.module('findTheSameApp.services', [])
+angular.module('findTheSameApp.providers', [])
+angular.module('findTheSameApp.filters', [])
+angular.module('findTheSameApp.values', [])
+
 angular
     .module('findTheSameApp',
     [
         'findTheSameApp.controllers',
         'findTheSameApp.directives',
         'findTheSameApp.services',
-        'findTheSameApp.providers'
-
+        'findTheSameApp.providers',
+        'findTheSameApp.filters',
+        'findTheSameApp.values'
     ])
-    .config(function( gameSettingsProvider){
-        gameSettingsProvider.setSettings({
+    .config(function (settingsProvider) {
+        settingsProvider.setSettings({
             playBoard: {
                 margin: 5,
-                distance:15
+                distance: 15
             },
             card: {
                 width: 50,
@@ -31,4 +45,4 @@ angular
             '<a href="https://github.com/abaksheiev/angular-find-the-same">http://abaksheiev.github.io/angular-find-the-same/index.html</a>' +
             '</small>'
         );
-});
+    });

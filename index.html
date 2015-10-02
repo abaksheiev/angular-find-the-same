@@ -61,7 +61,7 @@
 
 <!-- play content-->
   <div class="play-desk" ng-style="{'width': playBoard.width+'px','height':playBoard.height+'px'}">
-    <div card item="c" ng-repeat="c in cards | filter: notDeleted"></div>
+    <div card item="c" ng-repeat="c in cards | notDeleted"></div>
   </div>
 <!-- /play content-->
 
@@ -75,15 +75,22 @@
 <!-- Prototype Extensions -->
 <script src="common/Extensions.Array.js" language="JavaScript"></script>
 
+<!-- Values/Constans -->
+<script src="app/Values/ColorValue.js" language="JavaScript"></script>
+
+<!-- Filters -->
+<script src="app/Filters/CardFilter.js" language="JavaScript"></script>
+
 <!-- Services/Factories/Providers -->
-<script src="app/Services.GameSettingsService.js" language="JavaScript"></script>
-<script src="app/Services.GameManagerService.js" language="JavaScript"></script>
+<script src="app/Services/GameStateService.js" language="JavaScript"></script>
+<script src="app/Services/GeneratorCardService.js" language="JavaScript"></script>
+<script src="app/Providers/SettingsProvider.js" language="JavaScript"></script>
 
 <!-- Controllers -->
-<script src="app/Controllers.GameController.js" language="JavaScript"></script>
+<script src="app/Controllers/GameController.js" language="JavaScript"></script>
 
 <!-- Directive -->
-<script src="app/directives.cardDirective.js" language="JavaScript"></script>
+<script src="app/Directives/CardDirective.js" language="JavaScript"></script>
 
 </body>
 </html>

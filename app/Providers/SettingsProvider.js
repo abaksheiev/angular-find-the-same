@@ -4,7 +4,7 @@
  *********************************************************************/
 angular
     .module('findTheSameApp.providers', [])
-    .provider('gameSettings', function () {
+    .provider('settings', function () {
         var _defaultSettings ={
             playBoard: {
                 margin: 5,
