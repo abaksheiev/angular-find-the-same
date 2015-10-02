@@ -2,28 +2,36 @@
  * Created by Anton Baksheiev on 01.10.2015.                         *
  * linkedin: https://www.linkedin.com/pub/baksheiev-anton/20/a56/b53 *
  *********************************************************************/
-angular.module('findTheSameApp.services', [])
-    .service('gameManager',['$rootScope','$timeout', function($rootScope,$timeout){
+angular
+    .module('findTheSameApp.services', [])
+    .service('gameManager',['$rootScope', '$timeout', 'gameSettings', function($rootScope, $timeout, gameSettings){
         var _lastSelectedCardValue=null;
 
-        var _cards =[];
-        var _columns=10;
-        var _rows = 4;
+        var _cards =[]
+            ,_columns
+            ,_rows;
 
         var _calculate_Y=function( col){
             if(col==1){
-                return 5 ;
+                return gameSettings.playBoard.margin ;
             }else{
-                return (col-1)*70+5;
+                return (col-1) * gameSettings.card.height + gameSettings.playBoard.margin+(col-1)*gameSettings.playBoard.distance;
             }
         }
         var _calculate_X=function(row){
             if(row==1){
-                return 5 ;
+                return gameSettings.playBoard.margin ;
             }else{
-                return (row-1) * 70+5;
+                return (row-1) * gameSettings.card.width + gameSettings.playBoard.margin+(row-1)*gameSettings.playBoard.distance;
             }
         }
+
+        var _setSettings = function(settings){
+            _columns = settings.size.cols;
+            _rows = settings.size.rows;
+        }
+
+
 
         var _selectCard = function(el) {
 
@@ -88,12 +96,23 @@ angular.module('findTheSameApp.services', [])
             }
         }
 
+        var _playBoardSize = function(){
+
+            var obj={}
+
+            obj['width'] = _columns * gameSettings.card.width + 2*gameSettings.playBoard.margin+(_columns-1)*gameSettings.playBoard.distance;
+            obj['height'] =_rows * gameSettings.card.height + 2*gameSettings.playBoard.margin+(_rows-1)*gameSettings.playBoard.distance;;
+
+            return obj;
+        }
+
         return {
             cards: function () {
                 _generateMockCards();
                 return _cards;
-            }
-
+            },
+            setSettings:_setSettings,
+            playBoard:_playBoardSize
         }
     }
     ]);
