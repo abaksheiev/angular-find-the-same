@@ -4,7 +4,7 @@
  *********************************************************************/
 
 angular.module('findTheSameApp.directives',[])
-    .directive('card', function() {
+    .directive('card', ['gameSettings',function(gameSettings) {
         return {
             restrict: 'A',
             //templateUrl: 'app/views/card.html',
@@ -20,11 +20,10 @@ angular.module('findTheSameApp.directives',[])
                 scope.text =  scope.item.value ;
                 scope.style={
                     top:scope.item.Y+'px',
-                    left:scope.item.X+'px'
+                    left:scope.item.X+'px',
+                    width:gameSettings.card.width+'px',
+                    height:gameSettings.card.height+'px',
                 }
-
-
             }
-
-        }});
+        }}]);
 
