@@ -8,14 +8,14 @@ angular.module('findTheSameApp.controllers', [])
         $scope.settings={
             cardType:"Numeric",
             size:{
-                rows:4,
-                cols:6
+                rows:3,
+                cols:4
             },
             matches:2
         };
 
-        $scope.rows=[3,4,5,6,7,8,9,10];
-        $scope.cols=[3,4,5,6,7,8,9,10];
+        $scope.rows=[1,3,5,7,9,11,13];
+        $scope.cols=[2,4,6,7,8,10,12];
 
         $scope.cardTypes=[
             {
@@ -23,10 +23,12 @@ angular.module('findTheSameApp.controllers', [])
                 value:"Alphabet"},
             {
                 text:"Numeric",
-                value:"Numeric"},
+                value:"Numeric"}
+/*,
             {
                 text:"Images",
                 value:"Images"}
+*/
         ];
 
         $scope.newGame=function(){

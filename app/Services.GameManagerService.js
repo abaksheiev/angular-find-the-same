@@ -5,11 +5,19 @@
 angular
     .module('findTheSameApp.services', [])
     .service('gameManager',['$rootScope', '$timeout', 'gameSettings', function($rootScope, $timeout, gameSettings){
-        var _lastSelectedCardValue=null;
 
+        var _alphabet=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        var _numeric=['0','1','2','3','4','5','6','7','8','9'];
+
+        var _lastSelectedCardValue=null;
         var _cards =[]
             ,_columns
-            ,_rows;
+            ,_rows
+        /*
+            1: Alphabet
+            2: Numeric
+         */
+            ,_cardType;
 
         var _calculate_Y=function( col){
             if(col==1){
@@ -29,9 +37,48 @@ angular
         var _setSettings = function(settings){
             _columns = settings.size.cols;
             _rows = settings.size.rows;
+            _cardType = settings.cardType
         }
 
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        // TODO: move to separate service
+        var _getNumericValues = function(countValues){
+            var array =[];
 
+            var firstNumber = getRandomInt(0,_numeric.length-1);
+            var secondNumber = getRandomInt(0,_numeric.length-1);
+
+            for(var i=0;i<countValues;i++){
+
+                var firstNumber = getRandomInt(0,_numeric.length-1);
+                var secondNumber = getRandomInt(0,_numeric.length-1);
+
+                array.push(_numeric[firstNumber]+_numeric[secondNumber]);
+            }
+            var fullArray =  array.concat(array.slice(0));
+
+            return fullArray.shuffle();
+        }
+
+        var _getAphabetValues = function(countValues){
+            var array =[];
+
+            var firstNumber = getRandomInt(0,_alphabet.length-1);
+            var secondNumber = getRandomInt(0,_alphabet.length-1);
+
+            for(var i=0;i<countValues;i++){
+
+                var firstNumber = getRandomInt(0,_alphabet.length-1);
+                var secondNumber = getRandomInt(0,_alphabet.length-1);
+
+                array.push(_alphabet[firstNumber]+_alphabet[secondNumber]);
+            }
+            var fullArray =  array.concat(array.slice(0));
+
+            return fullArray.shuffle();
+        }
 
         var _selectCard = function(el) {
 
@@ -72,25 +119,28 @@ angular
             var valuesCount = (_columns * _rows)/2;
             var values=[];
 
-            for(var i = 1;i<=valuesCount;i++) {
-                var tmp_i = i;
-                values.push(tmp_i);
+            switch (_cardType){
+                case 'Numeric':
+                    values = _getNumericValues(valuesCount );
+                    break;
+                case 'Alphabet':
+                    values =_getAphabetValues(valuesCount );
+                    break;
+                default :
+                    console.error('Unsupported type of cards')
             }
 
-            for(var i = 1;i<=valuesCount;i++) {
-                var tmp_i = i;
-                values.push(tmp_i);
-            }
-
-             for (var row = 1; row <= _rows; row++) {
+            for (var row = 1; row <= _rows; row++) {
                 for (var col = 1; col <= _columns; col++) {
+
                     var v = values.pop()
+
                     _cards.push({
                         'click': _selectCard ,
                         Y: _calculate_Y(row),
                         X: _calculate_X(col),
-                        value:v,
-                        active:false
+                        value: v,
+                        active: false
                     });
                 }
             }
@@ -116,3 +166,4 @@ angular
         }
     }
     ]);
+// TODO: move to library

@@ -23,9 +23,8 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Type</label>
       <div class="col-sm-10">
-        <select class="form-control" ng-disabled="true" ng-model="settings.cardType" ng-se ng-options="cardType.value as cardType.text for cardType in cardTypes" style="width:162px"></select>
+        <select class="form-control" ng-model="settings.cardType" ng-se ng-options="cardType.value as cardType.text for cardType in cardTypes" style="width:162px"></select>
       </div>
-
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Size</label>
@@ -72,6 +71,9 @@
 
 <!-- Main application-->
 <script src="app/app.js"></script>
+
+<!-- Prototype Extensions -->
+<script src="common/Extensions.Array.js" language="JavaScript"></script>
 
 <!-- Services/Factories/Providers -->
 <script src="app/Services.GameSettingsService.js" language="JavaScript"></script>

@@ -15,8 +15,6 @@ angular.module('findTheSameApp.directives',[])
                 item: '='
             },
             link: function (scope, element, attrs) {
-                console.log(scope.item)
-
                 scope.text =  scope.item.value ;
                 scope.style={
                     top:scope.item.Y+'px',
